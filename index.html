@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Pallavi 🎂</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #35133e, #100817 70%);
+    color: white;
+    font-family: 'Trebuchet MS', sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+#stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    color: #ffd6f7;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.3); }
+}
+
+.screen {
+    min-height: 100vh;
+    display: none;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen.active {
+    display: flex;
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.small-title {
+    color: #ffc2ec;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: clamp(36px, 9vw, 65px);
+    line-height: 1.2;
+    background: linear-gradient(90deg, #ffacd9, #fff0fb, #d9a4ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 15px #ff65c8);
+}
+
+p {
+    color: #f2d9ee;
+    line-height: 1.8;
+    margin: 20px auto;
+    max-width: 480px;
+    font-size: 16px;
+}
+
+button {
+    border: 1px solid #ffb4e5;
+    background: linear-gradient(135deg, #ff5cbd, #9e4dff);
+    color: white;
+    padding: 14px 26px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 12px;
+    box-shadow: 0 0 22px #d94dbb66;
+    transition: .3s;
+}
+
+button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 35px #ff71d5;
+}
+
+.heart {
+    font-size: 90px;
+    margin: 20px;
+    cursor: pointer;
+    animation: heartbeat 1.2s infinite;
+    filter: drop-shadow(0 0 20px #ff3ea5);
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+}
+
+.card {
+    width: min(100%, 480px);
+    padding: 28px 22px;
+    background: #ffffff0b;
+    border: 1px solid #ffc4ef44;
+    border-radius: 25px;
+    box-shadow: 0 0 40px #c13db51c;
+    backdrop-filter: blur(10px);
+}
+
+.cake {
+    font-size: 95px;
+    margin: 15px;
+    cursor: pointer;
+    display: inline-block;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.gift {
+    font-size: 90px;
+    cursor: pointer;
+    display: inline-block;
+    transition: .5s;
+}
+
+.gift:hover {
+    transform: rotate(-10deg) scale(1.15);
+}
+
+.hidden-message {
+    display: none;
+    color: #ffd5f2;
+    font-size: 18px;
+    margin-top: 20px;
+    animation: appear 1s ease;
+}
+
+.particle {
+    position: fixed;
+    bottom: -40px;
+    z-index: 5;
+    pointer-events: none;
+    animation: rise linear forwards;
+}
+
+@keyframes rise {
+    to {
+        transform: translateY(-115vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.footer {
+    margin-top: 30px;
+    color: #c8a9c9;
+    font-size: 12px;
+}
+
+#musicNote {
+    position: fixed;
+    bottom: 15px;
+    right: 12px;
+    z-index: 10;
+    font-size: 12px;
+    padding: 10px 14px;
+    margin: 0;
+}
+
+@media (max-width: 480px) {
+    p { font-size: 15px; }
+    .card { padding: 24px 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<button id="musicNote" onclick="toggleMusic()">♫ Music: OFF</button>
+
+<!-- SCREEN 1 -->
+<section class="screen active" id="screen1">
+    <div class="small-title">✨ A LITTLE SURPRISE ✨</div>
+    <div class="heart" onclick="nextScreen(2)">💗</div>
+    <h1>Hey Pallavi!</h1>
+    <p>Someone has made something special for you...</p>
+    <button onclick="nextScreen(2)">Open Your Surprise 💌</button>
+    <div class="footer">Made with ♡ just for you</div>
+</section>
+
+<!-- SCREEN 2 -->
+<section class="screen" id="screen2">
+    <div class="small-title">TODAY IS ALL ABOUT YOU</div>
+    <h1>Happy Birthday<br>Pallavi! 🎂</h1>
+    <div class="cake" onclick="celebrate()">🎂</div>
+    <p>
+        Today isn't just another day.<br>
+        It's the day someone wonderful came into this world. 🌷
+    </p>
+    <button onclick="nextScreen(3)">A Little Message For You 💌</button>
+</section>
+
+<!-- SCREEN 3 -->
+<section class="screen" id="screen3">
+    <div class="card">
+        <div class="small-title">A MESSAGE FROM THE HEART</div>
+        <div style="font-size:45px">🌷💗🌷</div>
+        <h1 style="font-size:38px">Dear Pallavi,</h1>
+        <p>
+            May your birthday bring you a thousand reasons to smile,
+            beautiful memories to keep, and little moments that make
+            life feel magical. ✨
+            <br><br>
+            May all your dreams find their way to you,
+            and may your smile never lose its magic. 🌙
+            <br><br>
+            Keep shining, keep smiling, and always be YOU! 💖
+        </p>
+        <div style="font-size:25px">🦋 🌸 🦋</div>
+        <button onclick="nextScreen(4)">One Last Surprise 🎁</button>
+    </div>
+</section>
+
+<!-- SCREEN 4 -->
+<section class="screen" id="screen4">
+    <div class="small-title">MADE YOU SMILE? 💗</div>
+    <h1>Just For You</h1>
+    <p>There's one more little thing waiting for you...</p>
+
+    <div class="gift" onclick="openGift()">🎁</div>
+
+    <div class="hidden-message" id="giftMessage">
+        <h2>Surprise! 💖</h2>
+        <p>
+            Your gift is a wish for endless happiness,
+            unexpected adventures, and a year full of beautiful beginnings.
+            <br><br>
+            Happy Birthday once again, Pallavi! 🎂✨
+        </p>
+        <div style="font-size:40px">💐💝🦋</div>
+    </div>
+
+    <button onclick="celebrate()">Make It Magical ✨</button>
+    <button onclick="nextScreen(1)">Replay ↻</button>
+    <div class="footer">A little corner of the internet, made for Pallavi ♡</div>
+</section>
+
+<script>
+let particleTimer;
+let musicOn = false;
+let audioContext;
+let musicTimer;
+
+function nextScreen(number) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+
+    document.getElementById('screen' + number).classList.add('active');
+
+    if (number === 2 || number === 4) {
+        celebrate();
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openGift() {
+    const message = document.getElementById('giftMessage');
+    message.style.display = 'block';
+    celebrate();
+}
+
+function celebrate() {
+    const emojis = ['💗', '💖', '✨', '🌸', '💕', '🎉', '🦋'];
+
+    for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.fontSize = (16 + Math.random() * 22) + 'px';
+            particle.style.animationDuration = (3 + Math.random() * 4) + 's';
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 7500);
+        }, i * 70);
+    }
+}
+
+// Create background stars
+for (let i = 0; i < 65; i++) {
+    const star = document.createElement('span');
+    star.className = 'star';
+    star.textContent = Math.random() > 0.5 ? '✦' : '·';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.fontSize = (8 + Math.random() * 12) + 'px';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    document.getElementById('stars').appendChild(star);
+}
+
+// Optional background music using browser-generated tones
+function toggleMusic() {
+    const button = document.getElementById('musicNote');
+
+    if (musicOn) {
+        clearTimeout(musicTimer);
+        if (audioContext) audioContext.close();
+        audioContext = null;
+        musicOn = false;
+        button.textContent = '♫ Music: OFF';
+        return;
+    }
+
+    try {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        musicOn = true;
+        button.textContent = '♫ Music: ON';
+        playMelody();
+    } catch (error) {
+        button.textContent = 'Music unavailable';
+    }
+}
+
+function playMelody() {
+    if (!musicOn || !audioContext) return;
+
+    const notes = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 783.99, 1046.5];
+    const noteDuration = 0.32;
+    const start = audioContext.currentTime;
+
+    notes.forEach((frequency, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.value = frequency;
+        gain.gain.setValueAtTime(0.0001, start + index * noteDuration);
+        gain.gain.exponentialRampToValueAtTime(0.06, start + index * noteDuration + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + index * noteDuration + 0.27);
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start(start + index * noteDuration);
+        oscillator.stop(start + index * noteDuration + 0.29);
+    });
+
+    musicTimer = setTimeout(playMelody, notes.length * noteDuration * 1000 + 300);
+}
+</script>
+
+</body>
+      </html>
